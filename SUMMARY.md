@@ -6,6 +6,8 @@
 ## 代码阅读
 
 * [代码阅读](Code_Reading/README.md)
+  * [记住代码很难](Code_Reading/记住代码很难.md)
+
 
 ## 编译知识
 
