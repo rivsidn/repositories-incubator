@@ -9,6 +9,10 @@
   * [记住代码很难](code_reading/记住代码很难.md)
   * [代码阅读](code_reading/代码阅读.md)
 
+## QEMU源码分析
+
+* [QEMU源码分析](qemu_src/README.md)
+  * [调试环境搭建](qemu_src/调试环境搭建.md)
 
 ## 编译知识
 
