@@ -16,3 +16,4 @@ b glib_pollfds_fill
 
 run
 
+layout src
