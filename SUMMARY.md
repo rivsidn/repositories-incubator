@@ -13,6 +13,7 @@
 
 * [QEMU源码分析](qemu_src/README.md)
   * [调试环境搭建](qemu_src/调试环境搭建.md)
+  * [事件循环机制](qemu_src/事件循环机制.md)
 
 ## 编译知识
 

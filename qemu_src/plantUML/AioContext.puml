@@ -1,0 +1,38 @@
+
+@startuml
+struct AioContext {
+    GSource source
+
+    QemuRecMutex lock
+
+    QLIST_HEAD aio_handlers
+
+    int walking_handlers
+
+    uint32_t notify_me
+
+    QemuMutex bh_lock
+
+    struct QEMUBH *first_bh
+
+    int walking_bh
+
+    bool notified
+    EventNotifier notifier
+
+    struct ThreadPool *thread_pool
+
+#ifdef CONFIG_LINUX_AIO
+    struct LinuxAioState *linux_aio
+#endif
+
+    QEMUTimerListGroup tlg
+
+    int external_disable_cnt
+
+    int epollfd
+    bool epoll_enabled
+    bool epoll_available
+}
+
+@enduml

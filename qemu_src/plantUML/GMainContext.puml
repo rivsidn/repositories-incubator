@@ -1,0 +1,53 @@
+@startuml
+
+left to right direction
+
+struct GMainContext
+{
+  GMutex mutex
+  GCond cond
+  GThread *owner
+  guint owner_count
+  GMainContextFlags flags
+  GSList *waiters
+  gint ref_count
+  GHashTable *sources
+  GPtrArray *pending_dispatches
+  gint64 timeout_usec
+  guint next_id
+  GQueue source_lists
+  gint in_check_or_prepare
+  GPollRec *poll_records
+  guint n_poll_records
+  GPollFD *cached_poll_array
+  guint cached_poll_array_size
+  GWakeup *wakeup
+  GPollFD wake_up_rec
+  gboolean poll_changed
+  GPollFunc poll_func
+  gint64   time
+  gboolean time_is_fresh
+}
+
+struct GHashTable {
+    gsize size;
+    gint mod;
+    guint mask;
+    guint nnodes;
+    guint noccupied;
+    guint have_big_keys : 1;
+    guint have_big_values : 1;
+    gpointer keys;
+    guint *hashes;
+    gpointer values;
+    GHashFunc hash_func;
+    GEqualFunc key_equal_func;
+    gatomicrefcount ref_count;
+    int version;
+    GDestroyNotify key_destroy_func;
+    GDestroyNotify value_destroy_func;
+}
+
+GMainContext::sources ..> GHashTable
+
+@enduml
