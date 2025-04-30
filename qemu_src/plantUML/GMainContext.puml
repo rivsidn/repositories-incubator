@@ -30,24 +30,40 @@ struct GMainContext
 }
 
 struct GHashTable {
-    gsize size;
-    gint mod;
-    guint mask;
-    guint nnodes;
-    guint noccupied;
-    guint have_big_keys : 1;
-    guint have_big_values : 1;
-    gpointer keys;
-    guint *hashes;
-    gpointer values;
-    GHashFunc hash_func;
-    GEqualFunc key_equal_func;
-    gatomicrefcount ref_count;
-    int version;
-    GDestroyNotify key_destroy_func;
-    GDestroyNotify value_destroy_func;
+    gsize size
+    gint mod
+    guint mask
+    guint nnodes
+    guint noccupied
+    guint have_big_keys : 1
+    guint have_big_values : 1
+    gpointer keys
+    guint *hashes
+    gpointer values
+    GHashFunc hash_func
+    GEqualFunc key_equal_func
+    gatomicrefcount ref_count
+    int version
+    GDestroyNotify key_destroy_func
+    GDestroyNotify value_destroy_func
 }
 
+struct GQueue {
+  GList *head
+  GList *tail
+  guint  length
+}
+
+struct GPollRec {
+    GPollFD *fd;
+    GPollRec *prev;
+    GPollRec *next;
+    gint priority;
+}
+
+
 GMainContext::sources ..> GHashTable
+GMainContext::source_lists ..> GQueue
+GMainContext::poll_records ..> GPollRec
 
 @enduml

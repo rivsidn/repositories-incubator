@@ -1,38 +1,100 @@
-
 @startuml
+
+left to right direction
+
+struct EventNotifier {
+    int rfd
+    int wfd
+}
+struct EventNotifier_0 {
+    int rfd
+    int wfd
+}
+struct EventNotifier_1 {
+    int rfd
+    int wfd
+}
+struct AioHandler_0 {
+    EventNotifier *e
+    IOHandler *io_read
+    IOHandler *io_write
+    EventNotifierHandler *io_notify
+    GPollFD pfd
+    int deleted
+    void *opaque
+    bool is_external
+    QLIST_ENTRY_AioHandler node
+}
+struct AioHandler_1 {
+    EventNotifier *e
+    IOHandler *io_read
+    IOHandler *io_write
+    EventNotifierHandler *io_notify
+    GPollFD pfd
+    int deleted
+    void *opaque
+    bool is_external
+    QLIST_ENTRY_AioHandler node
+}
+AioHandler_0::node ..> AioHandler_1
+AioHandler_0::e ..> EventNotifier_0
+AioHandler_1::e ..> EventNotifier_1
+
+struct QEMUTimer {
+    int64_t expire_time
+    QEMUTimerList *timer_list
+    QEMUTimerCB *cb
+    void *opaque
+    QEMUTimer *next
+    int scale
+}
+struct QEMUTimerList_0 {
+    QEMUClock *clock
+    QemuMutex active_timers_lock
+    QEMUTimer *active_timers
+    QLIST_ENTRY_QEMUTimerList list
+    QEMUTimerListNotifyCB *notify_cb
+    void *notify_opaque
+    QemuEvent timers_done_ev
+}
+struct QEMUTimerList_1 {
+    QEMUClock *clock
+    QemuMutex active_timers_lock
+    QEMUTimer *active_timers
+    QLIST_ENTRY_QEMUTimerList list
+    QEMUTimerListNotifyCB *notify_cb
+    void *notify_opaque
+    QemuEvent timers_done_ev
+}
+struct QEMUTimerListGroup {
+    QEMUTimerList *tl[4]
+}
+QEMUTimerListGroup::tl ..> QEMUTimerList_0
+QEMUTimerListGroup::tl ..> QEMUTimerList_1
+
 struct AioContext {
     GSource source
-
     QemuRecMutex lock
-
-    QLIST_HEAD aio_handlers
-
+    QLIST_HEAD_AioHandler aio_handlers
     int walking_handlers
-
     uint32_t notify_me
-
     QemuMutex bh_lock
-
     struct QEMUBH *first_bh
-
     int walking_bh
-
     bool notified
     EventNotifier notifier
-
     struct ThreadPool *thread_pool
-
 #ifdef CONFIG_LINUX_AIO
     struct LinuxAioState *linux_aio
 #endif
-
     QEMUTimerListGroup tlg
-
     int external_disable_cnt
-
     int epollfd
     bool epoll_enabled
     bool epoll_available
 }
+AioContext::aio_handlers ..> AioHandler_0
+AioContext::notifier ..> EventNotifier
+AioContext::tlg ..> QEMUTimerListGroup
 
 @enduml

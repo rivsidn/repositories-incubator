@@ -13,7 +13,26 @@ set substitute-path /usr/src/glib2.0-2.82.1-0ubuntu1/debian/build/deb /home/yuch
 set args -m 1024 -smp 2 -hda /home/yuchao/Downloads/test.img --enable-kvm -vnc :1
 
 b glib_pollfds_fill
+# b qemu_signalfd
+# b sigfd_handler
 
 run
 
-layout src
+finish
+
+# layout src
+
+define show_gpollfds
+	set $i = 0
+	printf "man loop listen %d fds\n", glib_n_poll_fds
+	while ( $i < glib_n_poll_fds )
+		print ((GPollFD *)(gpollfds->data))[$i]->fd
+		set $i = $i + 1
+	end
+end
+
+define iterate_context_fds
+	# TODO
+	echo TODO
+	echo
+end
