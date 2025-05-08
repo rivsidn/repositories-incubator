@@ -1,0 +1,51 @@
+@startuml
+
+left to right direction
+
+class QemuOpt {
+    char *name
+    char *str
+    const QemuOptDesc *desc
+    union {
+        bool boolean
+        uint64_t uint
+    } value
+    QemuOpts     *opts
+    QTAILQ_ENTRY_QemuOpt next
+}
+
+class QemuOpts {
+    char *id
+    QemuOptsList *list
+    Location loc
+    class QemuOpt head
+    class QemuOpts next
+}
+QemuOpts::head ..> QemuOpt
+
+enum QemuOptType {
+    QEMU_OPT_STRING = 0
+    QEMU_OPT_BOOL
+    QEMU_OPT_NUMBER
+    QEMU_OPT_SIZE
+}
+
+class QemuOptDesc {
+    const char *name
+    enum QemuOptType type
+    const char *help
+    const char *def_value_str
+}
+QemuOptDesc::type ..> QemuOptType
+
+class QemuOptsList {
+    const char *name
+    const char *implied_opt_name
+    bool merge_lists
+    QTAILQ_HEAD_QemuOpts head
+    QemuOptDesc desc[]
+}
+QemuOptsList::head ..> QemuOpts
+QemuOptsList::desc --> QemuOptDesc
+
+@enduml

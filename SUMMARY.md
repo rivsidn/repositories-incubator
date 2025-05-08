@@ -14,6 +14,7 @@
 * [QEMU源码分析](qemu_src/README.md)
   * [调试环境搭建](qemu_src/调试环境搭建.md)
   * [事件循环机制](qemu_src/事件循环机制.md)
+  * [参数解析](qemu_src/参数解析.md)
 
 ## 编译知识
 
