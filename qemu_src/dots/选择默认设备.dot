@@ -1,0 +1,9 @@
+
+digraph {
+    main -> select_machine -> find_default_machine 
+        find_default_machine -> object_class_get_list
+            object_class_get_list -> object_class_foreach -> g_hash_table_foreach
+                g_hash_table_foreach -> object_class_foreach_tramp -> object_class_get_list_tramp
+        find_default_machine -> g_slist_free
+}
+

@@ -1,0 +1,112 @@
+@startuml
+
+left to right direction
+
+struct LinkProperty {
+    Object **child
+    void (*check)(Object *, const char *, Object *, Error **)
+    ObjectPropertyLinkFlags flags
+}
+
+struct ObjectProperty {
+    gchar *name
+    gchar *type
+    gchar *description
+    ObjectPropertyAccessor *get
+    ObjectPropertyAccessor *set
+    ObjectPropertyResolve *resolve
+    ObjectPropertyRelease *release
+    void *opaque
+}
+ObjectProperty::opaque --> LinkProperty
+
+struct InterfaceImpl {
+    const char *typename
+}
+
+struct ObjectClass {
+}
+struct TypeImpl {
+    const char *name
+    size_t class_size
+    size_t instance_size
+    void (*class_init)(ObjectClass *klass, void *data)
+    void (*class_base_init)(ObjectClass *klass, void *data)
+    void (*class_finalize)(ObjectClass *klass, void *data)
+    void *class_data
+    void (*instance_init)(Object *obj)
+    void (*instance_post_init)(Object *obj)
+    void (*instance_finalize)(Object *obj)
+    bool abstract
+    const char *parent
+    TypeImpl *parent_type
+    ObjectClass *class
+    int num_interfaces
+    InterfaceImpl interfaces[MAX_INTERFACES]
+}
+TypeImpl::class --> ObjectClass
+TypeImpl::interfaces --> InterfaceImpl
+
+'修改顺序以与TypeImpl{}相对应'
+struct TypeInfo {
+    const char *name
+    size_t class_size
+    size_t instance_size
+    void *class_data
+    bool abstract
+    const char *parent
+    InterfaceInfo *interfaces
+    void (*class_init)(ObjectClass *klass, void *data)
+    void (*class_base_init)(ObjectClass *klass, void *data)
+    void (*class_finalize)(ObjectClass *klass, void *data)
+    void (*instance_init)(Object *obj)
+    void (*instance_post_init)(Object *obj)
+    void (*instance_finalize)(Object *obj)
+}
+
+TypeInfo::name --> TypeImpl::name
+TypeInfo::parent --> TypeImpl::parent
+TypeInfo::instance_size --> TypeImpl::instance_size
+TypeInfo::abstract --> TypeImpl::abstract
+TypeInfo::class_size --> TypeImpl::class_size
+TypeInfo::class_data --> TypeImpl::class_data
+TypeInfo::interfaces --> TypeImpl::interfaces
+
+struct InterfaceClass {
+    ObjectClass parent_class
+    /* private */
+    ObjectClass *concrete_class
+    Type interface_type
+}
+struct GSList {
+    gpointer data
+    GSList* next
+}
+GSList::data --> InterfaceClass
+
+struct ObjectClass {
+    Type type
+    GSList *interfaces
+    const char *object_cast_cache[OBJECT_CLASS_CAST_CACHE]
+    const char *class_cast_cache[OBJECT_CLASS_CAST_CACHE]
+    ObjectUnparent *unparent
+    GHashTable *properties
+}
+ObjectClass::properties --> ObjectProperty
+
+ObjectClass::type --> TypeImpl
+ObjectClass::interfaces --> GSList
+
+struct Object
+{
+    /*< private >*/
+    ObjectClass *class
+    ObjectFree *free
+    GHashTable *properties
+    uint32_t ref
+    Object *parent
+}
+Object::class --> ObjectClass
+Object::properties --> ObjectProperty
+
+@enduml

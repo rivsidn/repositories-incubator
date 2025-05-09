@@ -8,7 +8,8 @@ all: $(OBJS)
 
 
 %.png : %.puml
-	java -jar ~/Downloads/plantuml-lgpl-SNAPSHOT.jar $<
+	plantuml $<
+#	java -jar ~/Downloads/plantuml-lgpl-SNAPSHOT.jar $<
 
 clean :
 	rm *.png

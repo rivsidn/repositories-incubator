@@ -1,0 +1,246 @@
+bus: main-system-bus
+  type System
+  dev: hpet, id ""
+    gpio-in "" 2
+    gpio-out "" 1
+    gpio-out "sysbus-irq" 32
+    timers = 3 (0x3)
+    msi = false
+    hpet-intcap = 4 (0x4)
+    mmio 00000000fed00000/0000000000000400
+  dev: kvm-ioapic, id ""
+    gpio-in "" 24
+    gsi_base = 0 (0x0)
+    mmio 00000000fec00000/0000000000001000
+  dev: i440FX-pcihost, id ""
+    pci-hole64-size = 18446744073709551615 (16 EiB)
+    short_root_bus = 0 (0x0)
+    bus: pci.0
+      type PCI
+      dev: edu, id "edu2"
+        addr = 05.0
+        romfile = ""
+        rombar = 1 (0x1)
+        multifunction = false
+        command_serr_enable = true
+        x-pcie-lnksta-dllla = true
+        class Class 00ff, addr 00:05.0, pci id 1234:11e8 (sub 1af4:1100)
+        bar 0: mem at 0xfea00000 [0xfeafffff]
+      dev: edu, id "edu1"
+        addr = 04.0
+        romfile = ""
+        rombar = 1 (0x1)
+        multifunction = false
+        command_serr_enable = true
+        x-pcie-lnksta-dllla = true
+        class Class 00ff, addr 00:04.0, pci id 1234:11e8 (sub 1af4:1100)
+        bar 0: mem at 0xfe900000 [0xfe9fffff]
+      dev: PIIX4_PM, id ""
+        smb_io_base = 1792 (0x700)
+        disable_s3 = 0 (0x0)
+        disable_s4 = 0 (0x0)
+        s4_val = 2 (0x2)
+        acpi-pci-hotplug-with-bridge-support = true
+        memory-hotplug-support = true
+        addr = 01.3
+        romfile = ""
+        rombar = 1 (0x1)
+        multifunction = false
+        command_serr_enable = true
+        x-pcie-lnksta-dllla = true
+        class Bridge, addr 00:01.3, pci id 8086:7113 (sub 1af4:1100)
+        bus: i2c
+          type i2c-bus
+          dev: smbus-eeprom, id ""
+            address = 87 (0x57)
+          dev: smbus-eeprom, id ""
+            address = 86 (0x56)
+          dev: smbus-eeprom, id ""
+            address = 85 (0x55)
+          dev: smbus-eeprom, id ""
+            address = 84 (0x54)
+          dev: smbus-eeprom, id ""
+            address = 83 (0x53)
+          dev: smbus-eeprom, id ""
+            address = 82 (0x52)
+          dev: smbus-eeprom, id ""
+            address = 81 (0x51)
+          dev: smbus-eeprom, id ""
+            address = 80 (0x50)
+      dev: piix3-ide, id ""
+        addr = 01.1
+        romfile = ""
+        rombar = 1 (0x1)
+        multifunction = false
+        command_serr_enable = true
+        x-pcie-lnksta-dllla = true
+        class IDE controller, addr 00:01.1, pci id 8086:7010 (sub 1af4:1100)
+        bar 4: i/o at 0xc040 [0xc04f]
+        bus: ide.1
+          type IDE
+          dev: ide-cd, id ""
+            drive = "ide1-cd0"
+            logical_block_size = 512 (0x200)
+            physical_block_size = 512 (0x200)
+            min_io_size = 0 (0x0)
+            opt_io_size = 0 (0x0)
+            discard_granularity = 512 (0x200)
+            write-cache = "auto"
+            rerror = "auto"
+            werror = "auto"
+            ver = "2.5+"
+            wwn = 0 (0x0)
+            serial = "QM00003"
+            model = ""
+            unit = 0 (0x0)
+        bus: ide.0
+          type IDE
+          dev: ide-hd, id ""
+            drive = "ide0-hd0"
+            logical_block_size = 512 (0x200)
+            physical_block_size = 512 (0x200)
+            min_io_size = 0 (0x0)
+            opt_io_size = 0 (0x0)
+            discard_granularity = 512 (0x200)
+            write-cache = "auto"
+            rerror = "auto"
+            werror = "auto"
+            ver = "2.5+"
+            wwn = 0 (0x0)
+            serial = "QM00001"
+            model = ""
+            cyls = 3875 (0xf23)
+            heads = 16 (0x10)
+            secs = 63 (0x3f)
+            bios-chs-trans = "large"
+            unit = 0 (0x0)
+      dev: e1000, id ""
+        mac = "52:54:00:12:34:56"
+        vlan = 0
+        netdev = "hub0port0"
+        autonegotiation = true
+        mitigation = true
+        extra_mac_registers = true
+        addr = 03.0
+        romfile = "efi-e1000.rom"
+        rombar = 1 (0x1)
+        multifunction = false
+        command_serr_enable = true
+        x-pcie-lnksta-dllla = true
+        class Ethernet controller, addr 00:03.0, pci id 8086:100e (sub 1af4:1100)
+        bar 0: mem at 0xfeb40000 [0xfeb5ffff]
+        bar 1: i/o at 0xc000 [0xc03f]
+        bar 6: mem at 0xffffffffffffffff [0x3fffe]
+      dev: VGA, id ""
+        vgamem_mb = 16 (0x10)
+        mmio = true
+        qemu-extended-regs = true
+        addr = 02.0
+        romfile = "vgabios-stdvga.bin"
+        rombar = 1 (0x1)
+        multifunction = false
+        command_serr_enable = true
+        x-pcie-lnksta-dllla = true
+        class VGA controller, addr 00:02.0, pci id 1234:1111 (sub 1af4:1100)
+        bar 0: mem at 0xfd000000 [0xfdffffff]
+        bar 2: mem at 0xfeb70000 [0xfeb70fff]
+        bar 6: mem at 0xffffffffffffffff [0xfffe]
+      dev: PIIX3, id ""
+        addr = 01.0
+        romfile = ""
+        rombar = 1 (0x1)
+        multifunction = true
+        command_serr_enable = true
+        x-pcie-lnksta-dllla = true
+        class ISA bridge, addr 00:01.0, pci id 8086:7000 (sub 1af4:1100)
+        bus: isa.0
+          type ISA
+          dev: isa-fdc, id ""
+            iobase = 1008 (0x3f0)
+            irq = 6 (0x6)
+            dma = 2 (0x2)
+            driveA = ""
+            driveB = ""
+            check_media_rate = true
+            fdtypeA = "auto"
+            fdtypeB = "auto"
+            fallback = "288"
+            isa irq 6
+            bus: floppy-bus.0
+              type floppy-bus
+              dev: floppy, id ""
+                unit = 0 (0x0)
+                drive = "floppy0"
+                logical_block_size = 512 (0x200)
+                physical_block_size = 512 (0x200)
+                min_io_size = 0 (0x0)
+                opt_io_size = 0 (0x0)
+                discard_granularity = 4294967295 (0xffffffff)
+                write-cache = "auto"
+                drive-type = "288"
+          dev: i8257, id ""
+            base = 192 (0xc0)
+            page-base = 136 (0x88)
+            pageh-base = -1 (0xffffffffffffffff)
+            dshift = 1 (0x1)
+          dev: i8257, id ""
+            base = 0 (0x0)
+            page-base = 128 (0x80)
+            pageh-base = -1 (0xffffffffffffffff)
+            dshift = 0 (0x0)
+          dev: port92, id ""
+            gpio-out "a20" 1
+          dev: vmmouse, id ""
+          dev: vmport, id ""
+          dev: i8042, id ""
+            gpio-out "a20" 1
+            isa irqs 1,12
+          dev: isa-parallel, id ""
+            index = 0 (0x0)
+            iobase = 888 (0x378)
+            irq = 7 (0x7)
+            chardev = "parallel0"
+            isa irq 7
+          dev: isa-serial, id ""
+            index = 0 (0x0)
+            iobase = 1016 (0x3f8)
+            irq = 4 (0x4)
+            chardev = "serial0"
+            wakeup = 0 (0x0)
+            isa irq 4
+          dev: isa-pcspk, id ""
+            iobase = 97 (0x61)
+            migrate = true
+          dev: kvm-pit, id ""
+            gpio-in "" 1
+            iobase = 64 (0x40)
+            lost_tick_policy = "delay"
+          dev: mc146818rtc, id ""
+            gpio-out "" 1
+            base_year = 0 (0x0)
+            lost_tick_policy = "discard"
+          dev: kvm-i8259, id ""
+            iobase = 160 (0xa0)
+            elcr_addr = 1233 (0x4d1)
+            elcr_mask = 222 (0xde)
+            master = false
+          dev: kvm-i8259, id ""
+            iobase = 32 (0x20)
+            elcr_addr = 1232 (0x4d0)
+            elcr_mask = 248 (0xf8)
+            master = true
+      dev: i440FX, id ""
+        addr = 00.0
+        romfile = ""
+        rombar = 1 (0x1)
+        multifunction = false
+        command_serr_enable = true
+        x-pcie-lnksta-dllla = true
+        class Host bridge, addr 00:00.0, pci id 8086:1237 (sub 1af4:1100)
+  dev: fw_cfg_io, id ""
+    iobase = 1296 (0x510)
+    dma_iobase = 1300 (0x514)
+    dma_enabled = true
+  dev: kvmclock, id ""
+  dev: kvmvapic, id ""
+

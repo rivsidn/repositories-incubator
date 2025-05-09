@@ -1,0 +1,10 @@
+
+digraph {
+    pc_init1 -> object_property_add_link
+    pc_init1 -> object_property_set_link
+        object_property_set_link -> object_get_canonical_path
+        object_property_set_link -> object_property_set_str -> object_property_set_qobject -> object_property_set 
+            object_property_set -> object_property_find
+            object_property_set -> object_set_link_property
+}
+
