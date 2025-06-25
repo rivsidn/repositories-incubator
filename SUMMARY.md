@@ -2,12 +2,21 @@
 
 * [Introduction](README.md)
 
+## AI
+
+* [代码阅读](AI/README.md)
+  * [MCP协议](AI/MCP协议.md)
+
 
 ## 代码阅读
 
 * [代码阅读](code_reading/README.md)
   * [记住代码很难](code_reading/记住代码很难.md)
   * [代码阅读](code_reading/代码阅读.md)
+
+### tools
+
+  * [代码阅读工具](code_reading/tools/README.md)
 
 ## QEMU源码分析
 
