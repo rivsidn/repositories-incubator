@@ -4,8 +4,13 @@
 
 ## AI
 
-* [代码阅读](AI/README.md)
+* [AI](AI/README.md)
   * [MCP协议](AI/MCP协议.md)
+  * [MCP简单示例](AI/MCP简单示例.md)
+  * [MCP简单示例架构分析](AI/MCP简单示例架构分析.md)
+  * [MCP各种类型示例](AI/MCP各种类型示例.md)
+  * [Claude_code使用kimi2](AI/Claude_code使用kimi2.md)
+  * [ollama使用](AI/ollama使用.md)
 
 
 ## 代码阅读
@@ -36,3 +41,10 @@
 
 * [网络知识](network/README.md)
   * [vlan技术](network/vlan技术.md)
+
+
+## 其他
+
+* [其他](miscs/README.md)
+  * [XDG目录规范](miscs/XDG目录规范.md)
+
