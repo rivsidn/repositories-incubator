@@ -8,8 +8,13 @@
   * [MCP协议](AI/MCP协议.md)
   * [MCP简单示例](AI/MCP简单示例.md)
   * [MCP简单示例架构分析](AI/MCP简单示例架构分析.md)
-  * [MCP各种类型示例](AI/MCP各种类型示例.md)
-  * [Claude_code使用kimi2](AI/Claude_code使用kimi2.md)
+  * [MCP通信协议](AI/MCP通信协议.md)
+  * [MCP特性示例](AI/mcp_features/README.md)
+    * [MCP特性示例](AI/mcp_features/资源mcp.md)
+  * [MCP_python-sdk源码分析](AI/mcp_python-sdk/README.md)
+    * [MCP服务器](AI/mcp_python-sdk/MCP服务器.md)
+  * [kimi2使用](AI/kimi2使用.md)
+  * [qwen使用](AI/qewn使用.md)
   * [ollama使用](AI/ollama使用.md)
 
 

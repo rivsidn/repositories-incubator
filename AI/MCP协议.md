@@ -1,4 +1,17 @@
 
+## MCP特性支持
+
+- Resources
+- Prompts
+- Tools
+- Discovery
+- Sampling
+- Roots
+- Elicitation
+
+
+
+
 `MCP` 提供AI模型和不同数据源和工具的标准链接方式.
 
 | 角色        | 功能                                       |
@@ -33,9 +46,6 @@
    LLM可以调用的工具
 3. 提示词
    可以帮助用户实现特定任务的预置提示词
-
-
-
 
 
 

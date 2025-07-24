@@ -114,7 +114,7 @@ class OllamaMCPClient:
         if not (is_python or is_js):
             raise ValueError("Server script must be a .py or .js file")
             
-        command = "/home/yuchao/AI_ask/mcp/quickstart-resources/weather-server-python/.venv/bin/python" if is_python else "node"
+        command = "/home/yuchao/demo/mcp/server/.venv/bin/python" if is_python else "node"
         server_params = StdioServerParameters(
             command=command,
             args=[server_script_path],
