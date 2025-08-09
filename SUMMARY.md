@@ -17,6 +17,7 @@
   * [MCP实现工具](AI/mcp_cases/README.md)
     * [MCP虚拟终端](AI/mcp_cases/MCP虚拟终端.md)
   * [claude_code提示词管理](AI/claude_code提示词管理.md)
+  * [claude_code_hook使用](AI/claude_code_hook使用.md)
   * [kimi2使用](AI/kimi2使用.md)
   * [qwen使用](AI/qewn使用.md)
   * [ollama使用](AI/ollama使用.md)
